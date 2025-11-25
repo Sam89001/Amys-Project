@@ -1,21 +1,25 @@
 // script.js
 
+// Dynamically set API base URL
+const BASE_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:5000/api'
+  : 'https://amys-project.onrender.com/api';
+
 // Login page logic
 function initLoginForm() {
   const form = document.getElementById('loginForm');
-  if (!form) return; // Only run if loginForm exists
+  if (!form) return;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Collect form data
     const data = {
       email: form.email.value.trim(),
       password: form.password.value
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -24,17 +28,8 @@ function initLoginForm() {
       const result = await res.json();
 
       if (res.ok) {
-        // Store JWT token for authenticated requests
         localStorage.setItem('token', result.token);
-
-        // Store username to display on splash page
-        if (result.user && result.user.username) {
-          localStorage.setItem('username', result.user.username);
-        } else {
-          localStorage.setItem('username', 'User'); // fallback
-        }
-
-        // Redirect to splash/dashboard page
+        localStorage.setItem('username', result.user?.username || 'User');
         window.location.href = 'homepage.html';
       } else {
         alert(result.error || 'Login failed. Please try again.');
@@ -49,10 +44,11 @@ function initLoginForm() {
 // Register page logic
 function initRegisterForm() {
   const form = document.getElementById('registerForm');
-  if (!form) return; // Only run if registerForm exists
+  if (!form) return;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const data = {
       username: form.username.value,
       email: form.email.value,
@@ -60,13 +56,14 @@ function initRegisterForm() {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
 
       const result = await res.json();
+
       if (res.ok) {
         alert('Registration successful!');
         window.location.href = 'index.html';
