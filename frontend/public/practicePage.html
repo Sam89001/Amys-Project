@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Japanese App</title>
+  <link rel="stylesheet" href="styles.css">
 
   <!-- Bootstrap -->
   <link 
@@ -95,13 +96,19 @@
 
        <!-- Drawing Area -->  
         <div class="container mt-4">
-          <div class="draw-box mx-auto">
-            <canvas id="drawCanvas"></canvas>
-            <div class="grid-overlay"></div>
+          <div class="draw-area">
+              <canvas id="drawCanvas"></canvas>
+
+               <!-- Grid Overlay -->  
+              <div class="grid-overlay">
+                  <div></div><div></div><div></div>
+                  <div></div><div></div><div></div>
+                  <div></div><div></div><div></div>
+              </div>
+
           </div>
         </div>
-
-        
+                
         <!-- Tools Row -->
         <div class="container mt-3">
           <div class="row align-items-center">
@@ -128,6 +135,6 @@
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="script.js"></script>
+
   </body>
 </html>

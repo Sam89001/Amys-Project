@@ -86,3 +86,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoginForm();
   initRegisterForm();
 });
+
+
+// -------------------------------
+// Canvas
+// -------------------------------
+const canvas = document.getElementById("drawCanvas");
+const ctx = canvas.getContext("2d");
+
+// Match canvas resolution to CSS size
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+// You can now draw on it (example):
+ctx.fillStyle = "white";
+ctx.fillRect(20, 20, 50, 50);
