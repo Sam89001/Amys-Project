@@ -61,7 +61,7 @@ canvas.addEventListener("pointermove", (e) => {
   let pressure = e.pressure || 1;
 
   // Enforce stronger starting pressure
-  pressure = Math.max(pressure, 0.35); // raise this number for thicker strokes
+  pressure = Math.max(pressure, 0.5); // raise this number for thicker strokes
 
   // Dynamic width
   const dynamicWidth = lineWidth * pressure;
