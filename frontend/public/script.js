@@ -91,13 +91,27 @@ document.addEventListener('DOMContentLoaded', () => {
 // -------------------------------
 // Canvas
 // -------------------------------
-const canvas = document.getElementById("drawCanvas");
-const ctx = canvas.getContext("2d");
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("drawCanvas");
+  if (!canvas) return  alert("Canvas Not Found");;
 
-// Match canvas resolution to CSS size
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return  alert("2D Context Not Available");;
 
-// You can now draw on it (example):
-ctx.fillStyle = "white";
-ctx.fillRect(20, 20, 50, 50);
+  console.log("Canvas ready:", canvas);
+
+  // Fill black background
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Click alert
+  canvas.addEventListener("click", () => {
+    alert("Hello! You clicked the canvas.");
+  });
+});
+
+
+
+// script.js
+
+
