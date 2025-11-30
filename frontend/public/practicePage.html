@@ -48,54 +48,65 @@
     </nav>
 
 
-    <!-- Blank Page Content Area -->
-    <div class="container py-2">
-      <!-- Kanji Navigation Row -->
-        <div class="container mt-4">
-          <div class="row align-items-center text-center">
+            <!-- Blank Page Content Area -->
+      <div class="container py-2">
 
-            <!-- Previous Button -->
-            <div class="col-2 text-start">
-              <button class="btn w-50" id="prevBtn">
-                <img src="images/left-arrow.png" alt="Prev" class="left-arrow-img">
-              </button>
+        <!-- First Row: Kanji Boxes -->
+        <div class="row text-center align-items-center mt-4">
+
+          <!-- Previous Kanji Box -->
+          <div class="col-3">
+            <p class="mb-1 fw-bold prevKanjiTitle">Previous</p>
+            <div class="p-3 border rounded bg-white kanji-box">
+              <span id="prevKanji">例</span>
             </div>
-
-            <!-- Previous Kanji Box -->
-            <div class="col-2">
-              <p class="mb-1 fw-bold">Previous</p>
-              <div class="p-3 border rounded bg-white">
-                <span id="prevKanji">例</span>
-              </div>
-            </div>
-
-            <!-- Current Kanji Box (Larger) -->
-            <div class="col-4">
-              <p class="mb-1 fw-bold">Current Kanji</p>
-              <div class="p-4 border rounded bg-white">
-                <span id="currentKanji" class="fs-1">漢</span>
-              </div>
-              <p class="mt-2 text-muted" id="currentKanjiName">Kanji Name</p>
-            </div>
-
-            <!-- Next Kanji Box -->
-            <div class="col-2">
-              <p class="mb-1 fw-bold">Next</p>
-              <div class="p-3 border rounded bg-white">
-                <span id="nextKanji">字</span>
-              </div>
-            </div>
-
-            <!-- Next Button -->
-            <div class="col-2 text-end">
-              <button class="btn w-50" id="nextBtn">
-                 <img src="images/right-arrow.png" alt="Prev" class="right-arrow-img">
-              </button>
-            </div>
-
-
           </div>
-        </div>  
+
+          <!-- Current Kanji Box -->
+          <div class="col-6">
+            <p class="mb-1 fw-bold currentKanjiTitle">Current Kanji</p>
+            <div class="p-4 border rounded bg-white kanji-box">
+              <span id="currentKanji" class="fs-1">漢</span>
+            </div>
+           
+          </div>
+
+          <!-- Next Kanji Box -->
+          <div class="col-3">
+            <p class="mb-1 fw-bold nextKanjiTitle">Next</p>
+            <div class="p-3 border rounded bg-white kanji-box">
+              <span id="nextKanji">字</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Second Row: Navigation Buttons -->
+        <div class="row text-center mt-2">
+
+          <!-- Previous Button -->
+          <div class="col-3 d-flex justify-content-center">
+            <button class="btn nav-btn" id="prevBtn">
+              <img src="images/left-arrow.png" alt="Prev" class="nav-arrow">
+            </button>
+          </div>
+
+          <!-- Spacer (empty) -->
+          <div class="col-6">
+             <p class="mt-2 text-muted" id="currentKanjiName">Kanji Name</p>
+          </div>
+
+          <!-- Next Button -->
+          <div class="col-3 d-flex justify-content-center">
+            <button class="btn nav-btn" id="nextBtn">
+              <img src="images/right-arrow.png" alt="Next" class="nav-arrow">
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
 
        <!-- Drawing Area -->  
         <div class="container mt-1">
