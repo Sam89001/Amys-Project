@@ -1,25 +1,3 @@
-
-
-// -------------------------------
-// Font Size Slider
-// -------------------------------
-
-// Default line width
-let lineWidth = 5;
-
-// Get slider and display element
-const fontSizeSlider = document.getElementById("fontSizeSlider");
-const fontSizeValue = document.getElementById("fontSizeValue");
-
-// Update line width when slider changes
-fontSizeSlider.addEventListener("input", (e) => {
-  lineWidth = e.target.value;                  // update line width
-  fontSizeValue.textContent = lineWidth;       // update number next to slider
-  console.log("Line width set to:", lineWidth);
-});
-
-
-
 // -------------------------------
 // Canvas Setup
 // -------------------------------
@@ -34,10 +12,11 @@ function clearCanvas() {
 const canvas = document.getElementById("drawCanvas");
 const ctx = canvas.getContext("2d");
 
+// Set canvas size
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
-// Fill black background initially
+// Fill background
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -48,6 +27,9 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
+// Fallback line width (slider updates this)
+let lineWidth = 5;
+
 // -------------------------------
 // Prevent Mobile Scrolling / Gestures
 // -------------------------------
@@ -56,64 +38,56 @@ canvas.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false
 canvas.addEventListener("touchend", (e) => e.preventDefault(), { passive: false });
 
 // -------------------------------
-// Mouse Events
+// Pointer Events (Mouse + Touch + Stylus)
 // -------------------------------
-canvas.addEventListener("mousedown", (e) => {
+canvas.addEventListener("pointerdown", (e) => {
   isDrawing = true;
+
   const rect = canvas.getBoundingClientRect();
   lastX = e.clientX - rect.left;
   lastY = e.clientY - rect.top;
 });
 
-canvas.addEventListener("mousemove", (e) => {
+canvas.addEventListener("pointermove", (e) => {
   if (!isDrawing) return;
+
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
-  drawLine(lastX, lastY, x, y);
+
+  // Pen pressure (0 → 1), fallback to 1 for mouse
+  const pressure = e.pressure || 1;
+  const dynamicWidth = lineWidth * pressure;
+
+  drawLine(lastX, lastY, x, y, dynamicWidth);
+
   lastX = x;
   lastY = y;
 });
 
-canvas.addEventListener("mouseup", () => (isDrawing = false));
-canvas.addEventListener("mouseleave", () => (isDrawing = false));
-
-// -------------------------------
-// Touch Events
-// -------------------------------
-canvas.addEventListener("touchstart", (e) => {
-  const t = e.touches[0];
-  isDrawing = true;
-  const rect = canvas.getBoundingClientRect();
-  lastX = t.clientX - rect.left;
-  lastY = t.clientY - rect.top;
+canvas.addEventListener("pointerup", () => {
+  isDrawing = false;
 });
-
-canvas.addEventListener("touchmove", (e) => {
-  if (!isDrawing) return;
-  const t = e.touches[0];
-  const rect = canvas.getBoundingClientRect();
-  const x = t.clientX - rect.left;
-  const y = t.clientY - rect.top;
-  drawLine(lastX, lastY, x, y);
-  lastX = x;
-  lastY = y;
-});
-
-canvas.addEventListener("touchend", () => (isDrawing = false));
 
 // -------------------------------
 // Draw a Line Function
 // -------------------------------
-function drawLine(x1, y1, x2, y2) {
-  ctx.strokeStyle = "black";     // line color
-  ctx.lineWidth = lineWidth;   // dynamic width from slider
-  ctx.lineCap = "round";       // smooth line ends
+function drawLine(x1, y1, x2, y2, width) {
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = width;
+  ctx.lineCap = "round";
+
   ctx.beginPath();
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
   ctx.stroke();
 }
+
+
+
+
+
+
 
 // -------------------------------
 // Clear Canvas Button
