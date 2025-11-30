@@ -58,7 +58,7 @@ canvas {
 }
 
 .grid-overlay div {
-  border: 1px solid rgba(255,255,255,0.3); /* faint grid lines */
+  border: 1px solid rgba(53, 53, 53, 0.3); /* faint grid lines */
 }
 
 

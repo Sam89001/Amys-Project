@@ -26,7 +26,7 @@ fontSizeSlider.addEventListener("input", (e) => {
 
 // --- Clear canvas function ---
 function clearCanvas() {
-  ctx.fillStyle = "black";
+  ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   console.log("Canvas cleared");
 }
@@ -38,7 +38,7 @@ canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
 // Fill black background initially
-ctx.fillStyle = "black";
+ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 // -------------------------------
@@ -106,7 +106,7 @@ canvas.addEventListener("touchend", () => (isDrawing = false));
 // Draw a Line Function
 // -------------------------------
 function drawLine(x1, y1, x2, y2) {
-  ctx.strokeStyle = "red";     // line color
+  ctx.strokeStyle = "black";     // line color
   ctx.lineWidth = lineWidth;   // dynamic width from slider
   ctx.lineCap = "round";       // smooth line ends
   ctx.beginPath();
