@@ -93,86 +93,68 @@ document.addEventListener('DOMContentLoaded', () => {
 // -------------------------------
 // Canvas
 // -------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById("drawCanvas");
-  if (!canvas) return console.error("Canvas not found");
+const canvas = document.getElementById("drawCanvas");
+const ctx = canvas.getContext("2d");
 
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return console.error("2D context not available");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  // Resize canvas to match CSS size
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
+ctx.fillStyle = "black";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Paint background black
+// Drawing state
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+
+// === Prevent Mobile Scroll / Pull-To-Refresh ===
+canvas.addEventListener("touchstart", (e) => e.preventDefault(), { passive: false });
+canvas.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+canvas.addEventListener("touchend", (e) => e.preventDefault(), { passive: false });
+
+// === Mouse Events ===
+canvas.addEventListener("mousedown", (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.clientX, e.clientY];
+});
+
+canvas.addEventListener("mousemove", (e) => {
+  if (!isDrawing) return;
+  draw(e.clientX, e.clientY);
+});
+
+canvas.addEventListener("mouseup", () => (isDrawing = false));
+
+// === Touch Events ===
+canvas.addEventListener("touchstart", (e) => {
+  const t = e.touches[0];
+  isDrawing = true;
+  [lastX, lastY] = [t.clientX, t.clientY];
+});
+
+canvas.addEventListener("touchmove", (e) => {
+  if (!isDrawing) return;
+  const t = e.touches[0];
+  draw(t.clientX, t.clientY);
+});
+
+canvas.addEventListener("touchend", () => (isDrawing = false));
+
+// === Draw Function ===
+function draw(x, y) {
+  ctx.fillStyle = "red"; // simple red dot
+  ctx.fillRect(x, y, 5, 5);
+
+  lastX = x;
+  lastY = y;
+}
+
+// === Clear Canvas Button ===
+const eraserBtn = document.getElementById("eraserBtn");
+
+eraserBtn.addEventListener("click", () => {
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  let isDrawing = false;
-
-
-  // ------------------------------------------------------------------
-  // POINTER DOWN – user starts drawing
-  // ------------------------------------------------------------------
-  canvas.addEventListener("pointerdown", (e) => {
-    isDrawing = true;
-
-    // Begin a new path
-    ctx.beginPath();
-    ctx.strokeStyle = "red";   // your drawing colour
-    ctx.lineWidth = 4;         // thickness
-    ctx.lineCap = "round";     // smooth edges
-
-    // Move the pen to the starting position
-    const rect = canvas.getBoundingClientRect();
-    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-  });
-
-  // ------------------------------------------------------------------
-  // POINTER MOVE – user drags to draw
-  // ------------------------------------------------------------------
-  canvas.addEventListener("pointermove", (e) => {
-    if (!isDrawing) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    ctx.lineTo(x, y);
-    ctx.stroke();
-  });
-
-  // ------------------------------------------------------------------
-  // POINTER UP / LEAVE – stop drawing
-  // ------------------------------------------------------------------
-  const stopDrawing = () => {
-    isDrawing = false;
-    ctx.closePath();
-  };
-
-  canvas.addEventListener("pointerup", stopDrawing);
-  canvas.addEventListener("pointerleave", stopDrawing);
-
-
-
-  // ------------------------------------------------------------------
-  // ERASE CANVAS
-  // ------------------------------------------------------------------
-  const eraserBtn = document.getElementById("eraserBtn");
-
-  eraserBtn.addEventListener("click", () => {
-    // Fill the entire canvas with black again
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    console.log("Canvas cleared.");
+  console.log("Canvas cleared");
 });
-});
-
-
-
- 
-
-// script.js
-
 

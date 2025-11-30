@@ -26,6 +26,11 @@ h1 {
 
 /* Canvas */
 
+canvas {
+  touch-action: none;     /* Disable scrolling, zooming & refresh gestures */
+}
+
+
 .draw-area {
   position: relative;
   width: 300px;
