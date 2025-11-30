@@ -88,29 +88,90 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
 // -------------------------------
 // Canvas
 // -------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("drawCanvas");
-  if (!canvas) return  alert("Canvas Not Found");;
+  if (!canvas) return console.error("Canvas not found");
 
   const ctx = canvas.getContext("2d");
-  if (!ctx) return  alert("2D Context Not Available");;
+  if (!ctx) return console.error("2D context not available");
 
-  console.log("Canvas ready:", canvas);
+  // Resize canvas to match CSS size
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
 
-  // Fill black background
+  // Paint background black
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Click alert
-  canvas.addEventListener("click", () => {
-    alert("Hello! You clicked the canvas.");
+  let isDrawing = false;
+
+
+  // ------------------------------------------------------------------
+  // POINTER DOWN – user starts drawing
+  // ------------------------------------------------------------------
+  canvas.addEventListener("pointerdown", (e) => {
+    isDrawing = true;
+
+    // Begin a new path
+    ctx.beginPath();
+    ctx.strokeStyle = "red";   // your drawing colour
+    ctx.lineWidth = 4;         // thickness
+    ctx.lineCap = "round";     // smooth edges
+
+    // Move the pen to the starting position
+    const rect = canvas.getBoundingClientRect();
+    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
   });
+
+  // ------------------------------------------------------------------
+  // POINTER MOVE – user drags to draw
+  // ------------------------------------------------------------------
+  canvas.addEventListener("pointermove", (e) => {
+    if (!isDrawing) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    ctx.lineTo(x, y);
+    ctx.stroke();
+  });
+
+  // ------------------------------------------------------------------
+  // POINTER UP / LEAVE – stop drawing
+  // ------------------------------------------------------------------
+  const stopDrawing = () => {
+    isDrawing = false;
+    ctx.closePath();
+  };
+
+  canvas.addEventListener("pointerup", stopDrawing);
+  canvas.addEventListener("pointerleave", stopDrawing);
+
+
+
+  // ------------------------------------------------------------------
+  // ERASE CANVAS
+  // ------------------------------------------------------------------
+  const eraserBtn = document.getElementById("eraserBtn");
+
+  eraserBtn.addEventListener("click", () => {
+    // Fill the entire canvas with black again
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    console.log("Canvas cleared.");
+});
 });
 
 
+
+ 
 
 // script.js
 
