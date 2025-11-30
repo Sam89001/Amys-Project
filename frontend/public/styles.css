@@ -66,9 +66,11 @@ canvas {
 
 
 .eraser-img,
-.undo-img {
-  width: 40px;          
-  height: 40px;
+.undo-img,
+.left-arrow-img,
+.right-arrow-img {
+  width: 30px;          
+  height: 30px;
   cursor: pointer;      
   display: block;
   margin: 0 auto;       
