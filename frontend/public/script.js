@@ -96,9 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const canvas = document.getElementById("drawCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
 ctx.fillStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -107,49 +106,69 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
-// === Mouse Events ===
+// Prevent mobile scrolling / gestures
+canvas.addEventListener("touchstart", (e) => e.preventDefault(), { passive: false });
+canvas.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+canvas.addEventListener("touchend", (e) => e.preventDefault(), { passive: false });
+
+// --- Mouse Events ---
 canvas.addEventListener("mousedown", (e) => {
   isDrawing = true;
-  [lastX, lastY] = [e.clientX, e.clientY];
+  const rect = canvas.getBoundingClientRect();
+  lastX = e.clientX - rect.left;
+  lastY = e.clientY - rect.top;
 });
 
 canvas.addEventListener("mousemove", (e) => {
   if (!isDrawing) return;
-  draw(e.clientX, e.clientY);
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  drawLine(lastX, lastY, x, y);
+  lastX = x;
+  lastY = y;
 });
 
 canvas.addEventListener("mouseup", () => (isDrawing = false));
+canvas.addEventListener("mouseleave", () => (isDrawing = false));
 
-// === Touch Events ===
+// --- Touch Events ---
 canvas.addEventListener("touchstart", (e) => {
   const t = e.touches[0];
   isDrawing = true;
-  [lastX, lastY] = [t.clientX, t.clientY];
+  const rect = canvas.getBoundingClientRect();
+  lastX = t.clientX - rect.left;
+  lastY = t.clientY - rect.top;
 });
 
 canvas.addEventListener("touchmove", (e) => {
   if (!isDrawing) return;
   const t = e.touches[0];
-  draw(t.clientX, t.clientY);
+  const rect = canvas.getBoundingClientRect();
+  const x = t.clientX - rect.left;
+  const y = t.clientY - rect.top;
+  drawLine(lastX, lastY, x, y);
+  lastX = x;
+  lastY = y;
 });
 
 canvas.addEventListener("touchend", () => (isDrawing = false));
 
-// === Draw Function ===
-function draw(x, y) {
-  ctx.fillStyle = "red"; // simple red dot
-  ctx.fillRect(x, y, 5, 5);
-
-  lastX = x;
-  lastY = y;
+// --- Draw a line from (x1,y1) to (x2,y2) ---
+function drawLine(x1, y1, x2, y2) {
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 5;
+  ctx.lineCap = "round"; // smooth line ends
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
 }
 
-// === Clear Canvas Button ===
+// --- Clear Canvas Button ---
 const eraserBtn = document.getElementById("eraserBtn");
-
 eraserBtn.addEventListener("click", () => {
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   console.log("Canvas cleared");
 });
-
