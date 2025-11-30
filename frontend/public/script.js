@@ -46,6 +46,8 @@ canvas.addEventListener("pointerdown", (e) => {
   const rect = canvas.getBoundingClientRect();
   lastX = e.clientX - rect.left;
   lastY = e.clientY - rect.top;
+
+  // DO NOT draw here — prevents the starting dot
 });
 
 canvas.addEventListener("pointermove", (e) => {
@@ -55,8 +57,13 @@ canvas.addEventListener("pointermove", (e) => {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  // Pen pressure (0 → 1), fallback to 1 for mouse
-  const pressure = e.pressure || 1;
+  // Pen pressure (0 → 1)
+  let pressure = e.pressure || 1;
+
+  // Enforce stronger starting pressure
+  pressure = Math.max(pressure, 0.35); // raise this number for thicker strokes
+
+  // Dynamic width
   const dynamicWidth = lineWidth * pressure;
 
   drawLine(lastX, lastY, x, y, dynamicWidth);
