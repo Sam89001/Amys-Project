@@ -91,27 +91,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // -------------------------------
-// Canvas
+// Font Size Slider
 // -------------------------------
+
+// Default line width
+let lineWidth = 5;
+
+// Get slider and display element
+const fontSizeSlider = document.getElementById("fontSizeSlider");
+const fontSizeValue = document.getElementById("fontSizeValue");
+
+// Update line width when slider changes
+fontSizeSlider.addEventListener("input", (e) => {
+  lineWidth = e.target.value;                  // update line width
+  fontSizeValue.textContent = lineWidth;       // update number next to slider
+  console.log("Line width set to:", lineWidth);
+});
+
+
+
+// -------------------------------
+// Canvas Setup
+// -------------------------------
+
 const canvas = document.getElementById("drawCanvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
+
+// Fill black background initially
 ctx.fillStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// Drawing state
+// -------------------------------
+// Drawing State
+// -------------------------------
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
-// Prevent mobile scrolling / gestures
+// -------------------------------
+// Prevent Mobile Scrolling / Gestures
+// -------------------------------
 canvas.addEventListener("touchstart", (e) => e.preventDefault(), { passive: false });
 canvas.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
 canvas.addEventListener("touchend", (e) => e.preventDefault(), { passive: false });
 
-// --- Mouse Events ---
+// -------------------------------
+// Mouse Events
+// -------------------------------
 canvas.addEventListener("mousedown", (e) => {
   isDrawing = true;
   const rect = canvas.getBoundingClientRect();
@@ -132,7 +161,9 @@ canvas.addEventListener("mousemove", (e) => {
 canvas.addEventListener("mouseup", () => (isDrawing = false));
 canvas.addEventListener("mouseleave", () => (isDrawing = false));
 
-// --- Touch Events ---
+// -------------------------------
+// Touch Events
+// -------------------------------
 canvas.addEventListener("touchstart", (e) => {
   const t = e.touches[0];
   isDrawing = true;
@@ -154,21 +185,26 @@ canvas.addEventListener("touchmove", (e) => {
 
 canvas.addEventListener("touchend", () => (isDrawing = false));
 
-// --- Draw a line from (x1,y1) to (x2,y2) ---
+// -------------------------------
+// Draw a Line Function
+// -------------------------------
 function drawLine(x1, y1, x2, y2) {
-  ctx.strokeStyle = "red";
-  ctx.lineWidth = 5;
-  ctx.lineCap = "round"; // smooth line ends
+  ctx.strokeStyle = "red";     // line color
+  ctx.lineWidth = lineWidth;   // dynamic width from slider
+  ctx.lineCap = "round";       // smooth line ends
   ctx.beginPath();
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
   ctx.stroke();
 }
 
-// --- Clear Canvas Button ---
+// -------------------------------
+// Clear Canvas Button
+// -------------------------------
 const eraserBtn = document.getElementById("eraserBtn");
 eraserBtn.addEventListener("click", () => {
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   console.log("Canvas cleared");
 });
+
