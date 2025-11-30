@@ -107,11 +107,6 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
-// === Prevent Mobile Scroll / Pull-To-Refresh ===
-canvas.addEventListener("touchstart", (e) => e.preventDefault(), { passive: false });
-canvas.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
-canvas.addEventListener("touchend", (e) => e.preventDefault(), { passive: false });
-
 // === Mouse Events ===
 canvas.addEventListener("mousedown", (e) => {
   isDrawing = true;
