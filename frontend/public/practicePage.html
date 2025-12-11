@@ -41,18 +41,17 @@
 
 
           <!-- Dropdown -->
-          <div class="dropdown">
-            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" 
-                    type="button" 
-                    data-bs-toggle="dropdown">
-              Select Kanji
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Placeholder 1</a></li>
-              <li><a class="dropdown-item" href="#">Placeholder 2</a></li>
-              <li><a class="dropdown-item" href="#">Placeholder 3</a></li>
-            </ul>
-          </div>
+            <div class="dropdown">
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle" 
+                      type="button" 
+                      data-bs-toggle="dropdown" 
+                      id="kanjiDropdownBtn">
+                Select Kanji
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" id="kanjiDropdownMenu">
+                <!-- Kanji items will be populated here dynamically -->
+              </ul>
+            </div>
 
         </div>
 

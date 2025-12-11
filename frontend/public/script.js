@@ -310,6 +310,53 @@ document.getElementById("nextBtn").addEventListener("click", () => {
   clearCanvas();
 });
 
+
+// -------------------------------
+// Populate Kanji Dropdown
+// -------------------------------
+function populateKanjiDropdown(list) {
+  const dropdownMenu = document.getElementById("kanjiDropdownMenu");
+  dropdownMenu.innerHTML = ""; // clear existing items
+
+  list.forEach((item, index) => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.className = "dropdown-item";
+    a.href = "#";
+    a.textContent = `${item.kanji} - ${item.name}`;
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      currentIndex = index; 
+      updateKanjiDisplay(); 
+      clearCanvas();  
+    });
+
+    li.appendChild(a);
+    dropdownMenu.appendChild(li);
+  });
+}
+
+// Initial population
+populateKanjiDropdown(currentList);
+
+// If currentList changes (ordered/random), repopulate:
+document.getElementById("orderedListBtn").addEventListener("click", () => {
+  currentList = [...kanjiList].sort((a, b) => a.id - b.id);
+  renderList(); 
+  populateKanjiDropdown(currentList); // repopulate dropdown
+  currentIndex = 0;
+  updateKanjiDisplay();
+});
+
+document.getElementById("randomListBtn").addEventListener("click", () => {
+  currentList = [...kanjiList].sort(() => Math.random() - 0.5);
+  renderList();
+  populateKanjiDropdown(currentList); // repopulate dropdown
+  currentIndex = 0;
+  updateKanjiDisplay();
+});
+
+
 // -------------------------------
 // Initial Render
 // -------------------------------
