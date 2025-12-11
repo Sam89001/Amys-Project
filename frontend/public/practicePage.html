@@ -25,8 +25,19 @@
         <!-- Right -->
         <div class="d-flex align-items-center gap-2">
 
-          <!-- Filter icon -->
-          <button class="btn btn-link p-0" id="filterBtn">☰</button>
+          
+          <!-- Filter / Sort Menu -->
+          <div class="dropdown">
+            <button class="btn btn-link p-0" id="filterBtn" data-bs-toggle="dropdown">
+              ☰
+            </button>
+
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item" id="orderedMode">Ordered List</button></li>
+              <li><button class="dropdown-item" id="randomMode">Random Mode</button></li>
+            </ul>
+          </div>
+
 
           <!-- Dropdown -->
           <div class="dropdown">
