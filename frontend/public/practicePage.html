@@ -25,17 +25,18 @@
         <!-- Right -->
         <div class="d-flex align-items-center gap-2">
 
-          
+
           <!-- Filter / Sort Menu -->
           <div class="dropdown">
-            <button class="btn btn-link p-0" id="filterBtn" data-bs-toggle="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" 
+                    type="button" 
+                    data-bs-toggle="dropdown">
               ☰
             </button>
-
-            <ul class="dropdown-menu">
-              <li><button class="dropdown-item" id="orderedMode">Ordered List</button></li>
-              <li><button class="dropdown-item" id="randomMode">Random Mode</button></li>
-            </ul>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#" id="orderedListBtn">Ordered List</a></li>
+                <li><a class="dropdown-item" href="#" id="randomListBtn">Random Mode</a></li>
+              </ul>
           </div>
 
 
@@ -166,6 +167,7 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

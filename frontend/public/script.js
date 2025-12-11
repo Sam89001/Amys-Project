@@ -113,137 +113,152 @@ eraserBtn.addEventListener("click", clearCanvas);
 // Kanji Array - N5
 // -------------------------------
 const kanjiList = [
-  { kanji: "一", name: "Ichi", meaning: "One" },
-  { kanji: "二", name: "Ni", meaning: "Two" },
-  { kanji: "三", name: "San", meaning: "Three" },
-  { kanji: "四", name: "Shi / Yon", meaning: "Four" },
-  { kanji: "五", name: "Go", meaning: "Five" },
-  { kanji: "六", name: "Roku", meaning: "Six" },
-  { kanji: "七", name: "Shichi / Nana", meaning: "Seven" },
-  { kanji: "八", name: "Hachi", meaning: "Eight" },
-  { kanji: "九", name: "Kyuu / Ku", meaning: "Nine" },
-  { kanji: "十", name: "Juu", meaning: "Ten" },
+  { id: 1, kanji: "一", name: "Ichi", meaning: "One" },
+  { id: 2, kanji: "二", name: "Ni", meaning: "Two" },
+  { id: 3, kanji: "三", name: "San", meaning: "Three" },
+  { id: 4, kanji: "四", name: "Shi / Yon", meaning: "Four" },
+  { id: 5, kanji: "五", name: "Go", meaning: "Five" },
+  { id: 6, kanji: "六", name: "Roku", meaning: "Six" },
+  { id: 7, kanji: "七", name: "Shichi / Nana", meaning: "Seven" },
+  { id: 8, kanji: "八", name: "Hachi", meaning: "Eight" },
+  { id: 9, kanji: "九", name: "Kyuu / Ku", meaning: "Nine" },
+  { id: 10, kanji: "十", name: "Juu", meaning: "Ten" },
 
-  { kanji: "百", name: "Hyaku", meaning: "Hundred" },
-  { kanji: "千", name: "Sen", meaning: "Thousand" },
-  { kanji: "万", name: "Man", meaning: "Ten Thousand" },
+  { id: 11, kanji: "百", name: "Hyaku", meaning: "Hundred" },
+  { id: 12, kanji: "千", name: "Sen", meaning: "Thousand" },
+  { id: 13, kanji: "万", name: "Man", meaning: "Ten Thousand" },
 
-  { kanji: "上", name: "Ue", meaning: "Up / Above" },
-  { kanji: "下", name: "Shita", meaning: "Down / Below" },
-  { kanji: "左", name: "Hidari", meaning: "Left" },
-  { kanji: "右", name: "Migi", meaning: "Right" },
-  { kanji: "中", name: "Naka", meaning: "Middle / Inside" },
-  { kanji: "大", name: "Dai / Ō", meaning: "Big" },
-  { kanji: "小", name: "Shou / Chiisai", meaning: "Small" },
+  { id: 14, kanji: "上", name: "Ue", meaning: "Up / Above" },
+  { id: 15, kanji: "下", name: "Shita", meaning: "Down / Below" },
+  { id: 16, kanji: "左", name: "Hidari", meaning: "Left" },
+  { id: 17, kanji: "右", name: "Migi", meaning: "Right" },
+  { id: 18, kanji: "中", name: "Naka", meaning: "Middle / Inside" },
+  { id: 19, kanji: "大", name: "Dai / Ō", meaning: "Big" },
+  { id: 20, kanji: "小", name: "Shou / Chiisai", meaning: "Small" },
 
-  { kanji: "月", name: "Tsuki", meaning: "Moon / Month" },
-  { kanji: "日", name: "Hi / Nichi", meaning: "Sun / Day" },
-  { kanji: "年", name: "Toshi", meaning: "Year" },
-  { kanji: "時", name: "Toki", meaning: "Time / Hour" },
-  { kanji: "分", name: "Fun / Bun", meaning: "Minute / To Divide" },
-  { kanji: "今", name: "Ima", meaning: "Now" },
-  { kanji: "先", name: "Saki", meaning: "Previous / Ahead" },
-  { kanji: "生", name: "Sei / Nama", meaning: "Life / Birth" },
-  { kanji: "何", name: "Nani", meaning: "What" },
+  { id: 21, kanji: "月", name: "Tsuki", meaning: "Moon / Month" },
+  { id: 22, kanji: "日", name: "Hi / Nichi", meaning: "Sun / Day" },
+  { id: 23, kanji: "年", name: "Toshi", meaning: "Year" },
+  { id: 24, kanji: "時", name: "Toki", meaning: "Time / Hour" },
+  { id: 25, kanji: "分", name: "Fun / Bun", meaning: "Minute / To Divide" },
+  { id: 26, kanji: "今", name: "Ima", meaning: "Now" },
+  { id: 27, kanji: "先", name: "Saki", meaning: "Previous / Ahead" },
+  { id: 28, kanji: "生", name: "Sei / Nama", meaning: "Life / Birth" },
+  { id: 29, kanji: "何", name: "Nani", meaning: "What" },
 
-  { kanji: "父", name: "Chichi", meaning: "Father" },
-  { kanji: "母", name: "Haha", meaning: "Mother" },
-  { kanji: "男", name: "Otoko", meaning: "Man / Male" },
-  { kanji: "女", name: "Onna", meaning: "Woman / Female" },
-  { kanji: "子", name: "Ko", meaning: "Child" },
-  { kanji: "友", name: "Tomo", meaning: "Friend" },
-  { kanji: "人", name: "Hito", meaning: "Person" },
-  { kanji: "名", name: "Na", meaning: "Name" },
-  { kanji: "手", name: "Te", meaning: "Hand" },
-  { kanji: "目", name: "Me", meaning: "Eye" },
-  { kanji: "耳", name: "Mimi", meaning: "Ear" },
-  { kanji: "口", name: "Kuchi", meaning: "Mouth" },
-  { kanji: "足", name: "Ashi", meaning: "Leg / Foot" },
-  { kanji: "力", name: "Chikara", meaning: "Power / Strength" },
+  { id: 30, kanji: "父", name: "Chichi", meaning: "Father" },
+  { id: 31, kanji: "母", name: "Haha", meaning: "Mother" },
+  { id: 32, kanji: "男", name: "Otoko", meaning: "Man / Male" },
+  { id: 33, kanji: "女", name: "Onna", meaning: "Woman / Female" },
+  { id: 34, kanji: "子", name: "Ko", meaning: "Child" },
+  { id: 35, kanji: "友", name: "Tomo", meaning: "Friend" },
+  { id: 36, kanji: "人", name: "Hito", meaning: "Person" },
+  { id: 37, kanji: "名", name: "Na", meaning: "Name" },
+  { id: 38, kanji: "手", name: "Te", meaning: "Hand" },
+  { id: 39, kanji: "目", name: "Me", meaning: "Eye" },
+  { id: 40, kanji: "耳", name: "Mimi", meaning: "Ear" },
+  { id: 41, kanji: "口", name: "Kuchi", meaning: "Mouth" },
+  { id: 42, kanji: "足", name: "Ashi", meaning: "Leg / Foot" },
+  { id: 43, kanji: "力", name: "Chikara", meaning: "Power / Strength" },
 
-  { kanji: "気", name: "Ki", meaning: "Spirit / Energy" },
-  { kanji: "雨", name: "Ame", meaning: "Rain" },
-  { kanji: "川", name: "Kawa", meaning: "River" },
-  { kanji: "山", name: "Yama", meaning: "Mountain" },
-  { kanji: "田", name: "Ta", meaning: "Rice Field" },
-  { kanji: "石", name: "Ishi", meaning: "Stone" },
-  { kanji: "花", name: "Hana", meaning: "Flower" },
-  { kanji: "草", name: "Kusa", meaning: "Grass" },
-  { kanji: "木", name: "Ki", meaning: "Tree / Wood" },
-  { kanji: "森", name: "Mori", meaning: "Forest" },
-  { kanji: "林", name: "Hayashi", meaning: "Woods" },
+  { id: 44, kanji: "気", name: "Ki", meaning: "Spirit / Energy" },
+  { id: 45, kanji: "雨", name: "Ame", meaning: "Rain" },
+  { id: 46, kanji: "川", name: "Kawa", meaning: "River" },
+  { id: 47, kanji: "山", name: "Yama", meaning: "Mountain" },
+  { id: 48, kanji: "田", name: "Ta", meaning: "Rice Field" },
+  { id: 49, kanji: "石", name: "Ishi", meaning: "Stone" },
+  { id: 50, kanji: "花", name: "Hana", meaning: "Flower" },
+  { id: 51, kanji: "草", name: "Kusa", meaning: "Grass" },
+  { id: 52, kanji: "木", name: "Ki", meaning: "Tree / Wood" },
+  { id: 53, kanji: "森", name: "Mori", meaning: "Forest" },
+  { id: 54, kanji: "林", name: "Hayashi", meaning: "Woods" },
 
-  { kanji: "犬", name: "Inu", meaning: "Dog" },
-  { kanji: "猫", name: "Neko", meaning: "Cat" },
-  { kanji: "鳥", name: "Tori", meaning: "Bird" },
-  { kanji: "魚", name: "Sakana", meaning: "Fish" },
-  { kanji: "虫", name: "Mushi", meaning: "Insect" },
-  { kanji: "馬", name: "Uma", meaning: "Horse" },
-  { kanji: "牛", name: "Ushi", meaning: "Cow" },
+  { id: 55, kanji: "犬", name: "Inu", meaning: "Dog" },
+  { id: 56, kanji: "猫", name: "Neko", meaning: "Cat" },
+  { id: 57, kanji: "鳥", name: "Tori", meaning: "Bird" },
+  { id: 58, kanji: "魚", name: "Sakana", meaning: "Fish" },
+  { id: 59, kanji: "虫", name: "Mushi", meaning: "Insect" },
+  { id: 60, kanji: "馬", name: "Uma", meaning: "Horse" },
+  { id: 61, kanji: "牛", name: "Ushi", meaning: "Cow" },
 
-  { kanji: "車", name: "Kuruma", meaning: "Car" },
-  { kanji: "駅", name: "Eki", meaning: "Station" },
-  { kanji: "道", name: "Michi", meaning: "Road / Way" },
-  { kanji: "門", name: "Mon", meaning: "Gate" },
-  { kanji: "校", name: "Kou", meaning: "School" },
-  { kanji: "学", name: "Gaku", meaning: "Study / Learn" },
-  { kanji: "書", name: "Sho", meaning: "Write" },
-  { kanji: "読", name: "Yomu", meaning: "Read" },
-  { kanji: "聞", name: "Kiku", meaning: "Hear / Listen" },
-  { kanji: "話", name: "Hanasu", meaning: "Speak" },
+  { id: 62, kanji: "車", name: "Kuruma", meaning: "Car" },
+  { id: 63, kanji: "駅", name: "Eki", meaning: "Station" },
+  { id: 64, kanji: "道", name: "Michi", meaning: "Road / Way" },
+  { id: 65, kanji: "門", name: "Mon", meaning: "Gate" },
+  { id: 66, kanji: "校", name: "Kou", meaning: "School" },
+  { id: 67, kanji: "学", name: "Gaku", meaning: "Study / Learn" },
+  { id: 68, kanji: "書", name: "Sho", meaning: "Write" },
+  { id: 69, kanji: "読", name: "Yomu", meaning: "Read" },
+  { id: 70, kanji: "聞", name: "Kiku", meaning: "Hear / Listen" },
+  { id: 71, kanji: "話", name: "Hanasu", meaning: "Speak" },
 
-  { kanji: "食", name: "Taberu / Shoku", meaning: "Eat / Food" },
-  { kanji: "飲", name: "Nomu", meaning: "Drink" },
+  { id: 72, kanji: "食", name: "Taberu / Shoku", meaning: "Eat / Food" },
+  { id: 73, kanji: "飲", name: "Nomu", meaning: "Drink" },
 
-  { kanji: "見", name: "Miru", meaning: "See / Look" },
-  { kanji: "行", name: "Iku", meaning: "Go" },
-  { kanji: "来", name: "Kuru", meaning: "Come" },
-  { kanji: "出", name: "Deru", meaning: "Exit / Leave" },
-  { kanji: "入", name: "Hairu / Iru", meaning: "Enter" },
+  { id: 74, kanji: "見", name: "Miru", meaning: "See / Look" },
+  { id: 75, kanji: "行", name: "Iku", meaning: "Go" },
+  { id: 76, kanji: "来", name: "Kuru", meaning: "Come" },
+  { id: 77, kanji: "出", name: "Deru", meaning: "Exit / Leave" },
+  { id: 78, kanji: "入", name: "Hairu / Iru", meaning: "Enter" },
 
-  { kanji: "円", name: "En", meaning: "Yen / Circle" },
-  { kanji: "玉", name: "Tama", meaning: "Ball / Jewel" },
-  { kanji: "王", name: "Ō", meaning: "King" },
-  { kanji: "犬", name: "Inu", meaning: "Dog" },
-  { kanji: "竹", name: "Take", meaning: "Bamboo" },
-  { kanji: "糸", name: "Ito", meaning: "Thread" },
-  { kanji: "貝", name: "Kai", meaning: "Shell" },
-  { kanji: "耳", name: "Mimi", meaning: "Ear" },
-  { kanji: "体", name: "Karada", meaning: "Body" },
+  { id: 79, kanji: "円", name: "En", meaning: "Yen / Circle" },
+  { id: 80, kanji: "玉", name: "Tama", meaning: "Ball / Jewel" },
+  { id: 81, kanji: "王", name: "Ō", meaning: "King" },
+  { id: 82, kanji: "竹", name: "Take", meaning: "Bamboo" },
+  { id: 83, kanji: "糸", name: "Ito", meaning: "Thread" },
+  { id: 84, kanji: "貝", name: "Kai", meaning: "Shell" },
+  { id: 85, kanji: "体", name: "Karada", meaning: "Body" },
 
-  { kanji: "早", name: "Hayai", meaning: "Early / Fast" },
-  { kanji: "夕", name: "Yū", meaning: "Evening" },
-  { kanji: "夜", name: "Yoru", meaning: "Night" },
-  { kanji: "朝", name: "Asa", meaning: "Morning" },
+  { id: 86, kanji: "早", name: "Hayai", meaning: "Early / Fast" },
+  { id: 87, kanji: "夕", name: "Yū", meaning: "Evening" },
+  { id: 88, kanji: "夜", name: "Yoru", meaning: "Night" },
+  { id: 89, kanji: "朝", name: "Asa", meaning: "Morning" },
 
-  { kanji: "村", name: "Mura", meaning: "Village" },
-  { kanji: "町", name: "Machi", meaning: "Town" },
-  { kanji: "国", name: "Kuni", meaning: "Country" },
+  { id: 90, kanji: "村", name: "Mura", meaning: "Village" },
+  { id: 91, kanji: "町", name: "Machi", meaning: "Town" },
+  { id: 92, kanji: "国", name: "Kuni", meaning: "Country" },
 
-  { kanji: "白", name: "Shiro", meaning: "White" },
-  { kanji: "黒", name: "Kuro", meaning: "Black" },
-  { kanji: "赤", name: "Aka", meaning: "Red" },
-  { kanji: "青", name: "Ao", meaning: "Blue" },
-  { kanji: "黄", name: "Ki", meaning: "Yellow" },
-  { kanji: "色", name: "Iro", meaning: "Colour" },
+  { id: 93, kanji: "白", name: "Shiro", meaning: "White" },
+  { id: 94, kanji: "黒", name: "Kuro", meaning: "Black" },
+  { id: 95, kanji: "赤", name: "Aka", meaning: "Red" },
+  { id: 96, kanji: "青", name: "Ao", meaning: "Blue" },
+  { id: 97, kanji: "黄", name: "Ki", meaning: "Yellow" },
+  { id: 98, kanji: "色", name: "Iro", meaning: "Colour" },
 
-  { kanji: "気", name: "Ki", meaning: "Energy / Spirit" },
-  { kanji: "元", name: "Gen", meaning: "Origin / Base" },
-  { kanji: "光", name: "Hikari", meaning: "Light" }
+  { id: 99, kanji: "気", name: "Ki", meaning: "Energy / Spirit" },
+  { id: 100, kanji: "元", name: "Gen", meaning: "Origin / Base" },
+  { id: 101, kanji: "光", name: "Hikari", meaning: "Light" }
 ];
 
 
-
-
+// --- Active List ---
+let currentList = [...kanjiList]; // start with full list
+let currentIndex = 0;              // tracks currently displayed kanji
 
 
 // -------------------------------
-// Current Index
+// Render Kanji List (Optional List Page)
 // -------------------------------
-let currentIndex = 0;
+function renderList() {
+  const listContainer = document.getElementById("kanjiContainer");
+  if (!listContainer) return;
+
+  listContainer.innerHTML = ""; // clear previous
+
+  currentList.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "kanji-card";
+    div.innerHTML = `
+      <div class="kanji">${item.kanji}</div>
+      <div class="name">${item.name}</div>
+      <div class="meaning">${item.meaning}</div>
+    `;
+    listContainer.appendChild(div);
+  });
+}
 
 // -------------------------------
-// Update Display Function
+// Update Kanji Display (Prev / Current / Next)
 // -------------------------------
 function updateKanjiDisplay() {
   const prevKanji = document.getElementById("prevKanji");
@@ -251,33 +266,52 @@ function updateKanjiDisplay() {
   const nextKanji = document.getElementById("nextKanji");
   const currentKanjiName = document.getElementById("currentKanjiName");
 
-  // Circular scroll
-  const prevIndex = (currentIndex - 1 + kanjiList.length) % kanjiList.length;
-  const nextIndex = (currentIndex + 1) % kanjiList.length;
+  // Circular navigation using currentList
+  const prevIndex = (currentIndex - 1 + currentList.length) % currentList.length;
+  const nextIndex = (currentIndex + 1) % currentList.length;
 
-  prevKanji.textContent = kanjiList[prevIndex].kanji;
-  currentKanji.textContent = kanjiList[currentIndex].kanji;
-  currentKanjiName.textContent = `${kanjiList[currentIndex].name} - ${kanjiList[currentIndex].meaning}`;
-  nextKanji.textContent = kanjiList[nextIndex].kanji;
+  prevKanji.textContent = currentList[prevIndex].kanji;
+  currentKanji.textContent = currentList[currentIndex].kanji;
+  currentKanjiName.textContent = `${currentList[currentIndex].name} - ${currentList[currentIndex].meaning}`;
+  nextKanji.textContent = currentList[nextIndex].kanji;
 }
+
+// -------------------------------
+// Dropdown Sorting / Randomizing
+// -------------------------------
+document.getElementById("orderedListBtn").addEventListener("click", () => {
+  currentList = [...kanjiList].sort((a, b) => a.id - b.id); // sort by ID
+  currentIndex = 0; // reset to first
+  updateKanjiDisplay();
+  renderList();
+  clearCanvas();
+});
+
+document.getElementById("randomListBtn").addEventListener("click", () => {
+  currentList = [...kanjiList].sort(() => Math.random() - 0.5); // shuffle
+  currentIndex = 0; // reset to first
+  updateKanjiDisplay();
+  renderList();
+  clearCanvas();
+});
 
 // -------------------------------
 // Prev / Next Button Logic
 // -------------------------------
 document.getElementById("prevBtn").addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + kanjiList.length) % kanjiList.length;
+  currentIndex = (currentIndex - 1 + currentList.length) % currentList.length;
   updateKanjiDisplay();
   clearCanvas();
 });
 
 document.getElementById("nextBtn").addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % kanjiList.length;
+  currentIndex = (currentIndex + 1) % currentList.length;
   updateKanjiDisplay();
   clearCanvas();
 });
 
-
 // -------------------------------
-// Initialize Display
+// Initial Render
 // -------------------------------
 updateKanjiDisplay();
+renderList();
