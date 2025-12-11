@@ -16,9 +16,15 @@ h1 {
   color: #ffffff !important;                
   border: none;           
 }
+.buttonStylingPink {
+  background-color: #df79da !important; 
+  color: #ffffff !important;                
+  border: none;           
+}
 
 .buttonStylingRed:hover,
-.buttonStylingGreen:hover {
+.buttonStylingGreen:hover,
+.buttonStylingPink:hover {
   background-color: #9CD4FB !important; 
 }
 
